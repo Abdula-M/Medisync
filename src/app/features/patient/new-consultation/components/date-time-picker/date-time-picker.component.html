@@ -1,0 +1,29 @@
+<div class="date-scroll-container">
+  @for (d of availableDates(); track d.date) {
+    <button 
+      type="button"
+      class="date-chip" 
+      [class.active]="selectedDate() === d.date"
+      (click)="dateSelected.emit(d.date)">
+      <span class="day-name">{{ d.dayName }}</span>
+      <span class="date-label">{{ d.label }}</span>
+    </button>
+  }
+</div>
+
+<div class="time-grid">
+  @for (t of availableTimes(); track t) {
+    <button 
+      type="button"
+      class="time-pill" 
+      [class.active]="selectedTime() === t"
+      [class.disabled]="isTimeDisabled(t)"
+      [disabled]="isTimeDisabled(t)"
+      (click)="onTimeSelect(t)">
+      {{ t }}
+    </button>
+  }
+</div>
+@if (doctorSelected() && !selectedTime()) {
+  <span class="hint-text">Серым цветом отмечено время, которое уже занято или прошло</span>
+}

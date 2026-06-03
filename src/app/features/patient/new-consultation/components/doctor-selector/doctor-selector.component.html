@@ -1,0 +1,15 @@
+<div class="doctor-grid">
+  @for (doc of doctors(); track doc.id) {
+    <button 
+      type="button"
+      class="doctor-card" 
+      [class.active]="selectedDoctorId() === doc.id"
+      (click)="doctorSelected.emit(doc.id)">
+      <div class="avatar">{{ getDoctorInitials(doc.name) }}</div>
+      <div class="doc-info">
+        <div class="doc-name">{{ doc.name }}</div>
+        <div class="doc-spec">{{ doc.specialization }}</div>
+      </div>
+    </button>
+  }
+</div>

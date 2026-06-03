@@ -1,0 +1,60 @@
+<div class="dashboard-layout">
+  <app-header></app-header>
+
+  <main class="dashboard-main form-layout">
+    <div class="page-header">
+      <h1>Новая запись на прием</h1>
+      <p>Пожалуйста, выберите специалиста и удобное время</p>
+    </div>
+
+    <div class="form-card">
+      @if (error()) {
+        <div class="alert alert-error">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          {{ error() }}
+        </div>
+      }
+
+      <div class="step-section">
+        <h2 class="step-title">1. Выберите специалиста</h2>
+        <app-doctor-selector 
+          [doctors]="doctors()"
+          [selectedDoctorId]="selectedDoctorId()"
+          (doctorSelected)="onDoctorSelect($event)">
+        </app-doctor-selector>
+      </div>
+
+      <div class="step-section" [class.disabled]="!selectedDoctorId()">
+        <h2 class="step-title">2. Выберите дату и время</h2>
+        <app-date-time-picker
+          [occupiedTimes]="occupiedTimes()"
+          [selectedDate]="selectedDate()"
+          [selectedTime]="selectedTime()"
+          [doctorSelected]="!!selectedDoctorId()"
+          (dateSelected)="onDateSelect($event)"
+          (timeSelected)="onTimeSelect($event)">
+        </app-date-time-picker>
+      </div>
+
+      <div class="step-section" [class.disabled]="!selectedTime()">
+        <h2 class="step-title">3. Опишите жалобы <span class="required">*</span></h2>
+        <app-symptoms-form
+          [disabled]="!selectedTime()"
+          (symptomsChanged)="onSymptomsChange($event)"
+          (formValid)="onFormValidationChange($event)">
+        </app-symptoms-form>
+      </div>
+
+      <div class="form-actions">
+        <a routerLink="/consultations" class="btn-cancel">Отмена</a>
+        <button type="button" class="btn-submit" [disabled]="isSubmitDisabled()" (click)="onSubmit()">
+          Подтвердить запись
+        </button>
+      </div>
+    </div>
+  </main>
+</div>

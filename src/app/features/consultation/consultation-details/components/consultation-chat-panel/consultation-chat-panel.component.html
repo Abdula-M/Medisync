@@ -1,0 +1,51 @@
+<div class="chat-card">
+  <div class="card-header">
+    <h3>Чат с {{ currentUserRole() === 'patient' ? 'врачом' : 'пациентом' }}</h3>
+    <span class="auto-update-indicator" title="Чат обновляется автоматически">
+      <span class="dot pulse"></span> Online
+    </span>
+  </div>
+
+  <div class="chat-messages" #chatContainer>
+    @if (!canChat()) {
+    <div class="empty-chat">
+      <p>Чат будет доступен после подтверждения врачом</p>
+    </div>
+    } @else {
+    @for (msg of messages(); track msg.id) {
+    <div class="message-bubble" [class.my-message]="msg.senderRole === currentUserRole()"
+      [class.other-message]="msg.senderRole !== currentUserRole()">
+      <div class="msg-sender">
+        {{ msg.senderRole === currentUserRole() ? 'Вы' : (msg.senderRole === 'doctor' ? 'Врач' : 'Пациент') }}
+      </div>
+      <div class="msg-text">{{ msg.text }}</div>
+      <div class="msg-time">{{ msg.timestamp | date:'HH:mm' }}</div>
+    </div>
+    } @empty {
+    <div class="empty-chat">
+      <p>Сообщений пока нет. Напишите первым!</p>
+    </div>
+    }
+    }
+  </div>
+
+  @if (canChat()) {
+  <div class="chat-input-area">
+    <form (ngSubmit)="sendMessage()" class="chat-form">
+      <input type="text" [(ngModel)]="newMessage" name="messageInput" placeholder="Введите сообщение..."
+        class="chat-input" autocomplete="off" />
+      <button type="submit" class="btn-send" [disabled]="!newMessage().trim()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </form>
+  </div>
+  } @else {
+  <div class="chat-disabled">
+    Чат пока недоступен (ожидает подтверждения или прием отменен).
+  </div>
+  }
+</div>

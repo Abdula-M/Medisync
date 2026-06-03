@@ -1,0 +1,63 @@
+.doctor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.doctor-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: white;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+}
+
+.doctor-card:hover {
+  border-color: var(--primary);
+  background: var(--bg-color);
+}
+
+.doctor-card.active {
+  border-color: var(--primary);
+  background: #F0FDF4;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+.doctor-card .avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 16px;
+}
+
+.doctor-card.active .avatar {
+  background: var(--primary);
+  color: white;
+}
+
+.doc-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.doc-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-primary);
+}
+
+.doc-spec {
+  font-size: 13px;
+  color: var(--text-secondary);
+}

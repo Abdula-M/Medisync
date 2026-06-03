@@ -1,0 +1,16 @@
+<app-modal [isOpen]="isOpen()" title="Завершение приема" (close)="onClose()">
+  <div class="form-group">
+    <label for="conclusionText">Заключение и рекомендации:</label>
+    <textarea id="conclusionText" [(ngModel)]="conclusionInput" rows="5" placeholder="Введите медицинское заключение..."
+      class="form-control" maxlength="1000"></textarea>
+    <small class="character-count"
+      style="color: var(--text-secondary); display: block; margin-top: 4px; text-align: right;">
+      {{ 1000 - conclusionInput().length }} символов осталось
+    </small>
+  </div>
+  <div class="modal-actions">
+    <button class="btn-outline" (click)="onClose()">Отмена</button>
+    <button class="btn-success" (click)="onSubmit()" [disabled]="!conclusionInput().trim()">Сохранить
+      заключение</button>
+  </div>
+</app-modal>

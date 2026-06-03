@@ -1,0 +1,15 @@
+<form [formGroup]="form">
+  <div class="form-group">
+    <textarea 
+      id="symptoms" 
+      formControlName="symptoms" 
+      rows="4" 
+      placeholder="Кратко опишите, что вас беспокоит..."
+      class="input-control"
+      [attr.disabled]="disabled() ? true : null"
+    ></textarea>
+    @if (form.get('symptoms')?.errors?.['required'] && form.get('symptoms')?.touched) {
+      <span class="error-text">Обязательное поле для заполнения</span>
+    }
+  </div>
+</form>

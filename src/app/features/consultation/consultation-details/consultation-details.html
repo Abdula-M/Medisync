@@ -1,0 +1,76 @@
+<div class="dashboard-layout print-layout">
+  <app-header class="no-print"></app-header>
+
+  <main class="dashboard-main details-layout">
+    @if (!consultation()) {
+    <div class="empty-state no-print">
+      <p>Консультация не найдена.</p>
+      <a [routerLink]="backUrl()" class="btn-primary">Вернуться</a>
+    </div>
+    } @else {
+    <div class="back-link-container no-print" style="grid-column: 1 / -1; margin-bottom: -16px;">
+      <a [routerLink]="backUrl()" class="back-link" style="display: inline-flex; align-items: center; gap: 8px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 12 5 12"></polyline>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Назад к списку
+      </a>
+    </div>
+
+    <div class="print-header print-only">
+      <div class="clinic-header-top">
+        <div class="clinic-logo">Клиника Medisync</div>
+        <div class="clinic-info">
+          Лицензия № ЛО-123456789<br>
+          Телефон: 8 (800) 123-45-67<br>
+          Адрес: ул. Здоровья, д. 1
+        </div>
+      </div>
+      <div class="document-title">
+        ПРОТОКОЛ МЕДИЦИНСКОЙ КОНСУЛЬТАЦИИ
+      </div>
+      <div class="document-subtitle">
+        Запись № {{ consultation()?.id }}
+      </div>
+    </div>
+
+    <div class="details-sidebar">
+      <app-consultation-info-card
+        [consultation]="consultation()!"
+        [isDoctor]="isDoctor()"
+        [isPatient]="isPatient()"
+        (confirm)="confirmConsultation()"
+        (start)="startConsultation()"
+        (openCancelModal)="isCancelModalOpen.set(true)"
+        (openConclusionModal)="isConclusionModalOpen.set(true)"
+        (print)="printProtocol()" />
+
+      <app-consultation-files-panel
+        [files]="consultation()!.files"
+        [isPatient]="isPatient()"
+        [isCancelled]="consultation()!.status === 'cancelled'"
+        (fileSelected)="onFileUploaded($event)" />
+    </div>
+
+    <app-consultation-chat-panel
+      [messages]="consultation()!.chatMessages"
+      [currentUserRole]="currentUser()!.role"
+      [canChat]="consultation()!.status === 'confirmed' || consultation()!.status === 'in-progress' || consultation()!.status === 'completed'"
+      (messageSent)="sendMessage($event)" />
+    }
+  </main>
+</div>
+
+<app-cancel-consultation-modal
+  [isOpen]="isCancelModalOpen()"
+  [requireReason]="consultation()?.status === 'confirmed'"
+  (close)="isCancelModalOpen.set(false)"
+  (submitted)="submitCancel($event)" />
+
+<app-conclusion-modal
+  [isOpen]="isConclusionModalOpen()"
+  (close)="isConclusionModalOpen.set(false)"
+  (submitted)="submitConclusion($event)" />

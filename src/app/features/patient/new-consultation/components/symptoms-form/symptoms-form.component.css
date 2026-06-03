@@ -1,0 +1,36 @@
+.form-group {
+  margin-bottom: 20px;
+}
+
+.input-control {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 15px;
+  color: var(--text-primary);
+  background: white;
+  transition: border-color var(--transition-fast);
+  outline: none;
+  resize: vertical;
+  min-height: 100px;
+  box-sizing: border-box;
+}
+
+.input-control:focus {
+  border-color: var(--primary);
+}
+
+.input-control:disabled {
+  background-color: var(--bg-color);
+  color: var(--text-tertiary);
+  cursor: not-allowed;
+}
+
+.error-text {
+  display: block;
+  color: var(--error);
+  font-size: 12px;
+  margin-top: 6px;
+  font-weight: 500;
+}

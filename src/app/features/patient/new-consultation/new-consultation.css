@@ -1,0 +1,119 @@
+.dashboard-layout {
+  min-height: 100vh;
+  background-color: var(--bg-color);
+}
+
+.form-layout {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.page-header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.page-header p {
+  color: var(--text-secondary);
+}
+
+.form-card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+}
+
+.alert {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.alert-error {
+  background: #FEF2F2;
+  color: var(--error);
+  border: 1px solid #FCA5A5;
+}
+
+.required {
+  color: var(--error);
+}
+
+.form-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+}
+
+.btn-cancel {
+  flex: 1;
+  text-align: center;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--bg-color);
+  text-decoration: none;
+  transition: background var(--transition-fast);
+}
+
+.btn-cancel:hover {
+  background: #E2E8F0;
+}
+
+.btn-submit {
+  flex: 2;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: white;
+  background: var(--primary);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-submit:hover:not([disabled]) {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-submit[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.step-section {
+  margin-bottom: 32px;
+  transition: opacity var(--transition-normal);
+}
+
+.step-section.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.step-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}

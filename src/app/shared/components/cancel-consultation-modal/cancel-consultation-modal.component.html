@@ -1,0 +1,12 @@
+<app-modal [isOpen]="isOpen()" title="Отмена приема" (close)="onClose()">
+  <div class="form-group">
+    <label for="cancelReason">Укажите причину отмены@if(requireReason()) {<span class="required" style="color: var(--error);">*</span>}:</label>
+    <textarea id="cancelReason" [(ngModel)]="cancelReasonInput" rows="3" placeholder="Причина отмены..."
+      class="form-control"></textarea>
+  </div>
+  <div class="modal-actions">
+    <button class="btn-outline" (click)="onClose()">Отмена</button>
+    <button class="btn-danger" (click)="onSubmit()" [disabled]="requireReason() && !cancelReasonInput().trim()">Подтвердить
+      отмену</button>
+  </div>
+</app-modal>
