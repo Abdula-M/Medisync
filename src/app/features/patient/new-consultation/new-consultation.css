@@ -117,3 +117,30 @@
   color: var(--text-primary);
   margin-bottom: 16px;
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .form-layout {
+    padding: 24px 16px;
+  }
+
+  .form-card {
+    padding: 24px 16px;
+    border-radius: 12px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 20px;
+  }
+
+  .btn-submit {
+    order: -1; /* Move submit above cancel on mobile */
+  }
+
+  .page-header h1 {
+    font-size: 24px;
+  }
+}

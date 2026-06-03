@@ -412,3 +412,83 @@
   background: var(--bg-color);
   color: var(--text-primary);
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .dashboard-main {
+    padding: 24px 16px;
+  }
+
+  .page-header {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .page-header .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .controls-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .filters {
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filters button {
+    white-space: nowrap;
+    flex: 1;
+    text-align: center;
+  }
+
+  .view-toggle {
+    display: none;
+  }
+
+  .consultations-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+
+  .consultation-card.list-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .consultation-card.list-item .card-header {
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .consultation-card.list-item .card-body {
+    margin: 0;
+    width: 100%;
+  }
+
+  .consultation-card.list-item .card-actions {
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  .card-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .btn-secondary, .btn-danger {
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+  }
+}

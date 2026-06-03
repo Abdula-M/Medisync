@@ -90,6 +90,7 @@
 @media (max-width: 768px) {
   .header-content {
     padding: 0 16px;
+    gap: 16px;
   }
   
   .user-name {
@@ -97,6 +98,24 @@
   }
   
   .nav-links {
-    margin-left: 16px;
+    margin-left: 0;
+    margin-right: 0;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    flex: 1;
+    -webkit-overflow-scrolling: touch;
+    mask-image: linear-gradient(to right, #000 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, #000 80%, transparent 100%);
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-links a {
+    padding: 12px 0; /* Larger touch target */
   }
 }
+
